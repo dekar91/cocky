@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import tech.dekar.cocky.ui.UiState
 
 class BakingViewModel : ViewModel() {
     private val _uiState: MutableStateFlow<UiState> =

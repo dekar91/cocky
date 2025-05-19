@@ -1,21 +1,41 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# --- Удалить отладочную информацию ---
+-assumenosideeffects class android.util.Log {
+    public static *** d(...);
+    public static *** v(...);
+    public static *** i(...);
+    public static *** w(...);
+    public static *** e(...);
+    public static *** wtf(...);
+}
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# --- Сохраняем entry points (например, Activities, Services, ViewModel, DI) ---
+-keep class * extends android.app.Activity
+-keep class * extends android.app.Service
+-keep class androidx.lifecycle.ViewModel { *; }
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# --- Сохраняем DI аннотации (если используешь Hilt/Dagger) ---
+-keepattributes *Annotation*
+-keep class dagger.** { *; }
+-keep class javax.inject.** { *; }
+-keep class kotlin.Metadata { *; }
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# --- Jetpack Compose (если используешь) ---
+-keep class androidx.compose.runtime.** { *; }
+-keep class androidx.compose.ui.** { *; }
+-keep class androidx.compose.foundation.** { *; }
+
+# --- Sentry (метаданные и номера строк) ---
+-keep class io.sentry.** { *; }
+-keepattributes *Annotation*, SourceFile, LineNumberTable, Signature
+
+# --- Сохраняем номера строк для вашего кода ---
+-keepattributes SourceFile,LineNumberTable
+-keep class tech.dekar.lockme.** { *; }
+
+# --- Если используешь reflection / JNI ---
+-keepclasseswithmembers class * {
+    native <methods>;
+}
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}

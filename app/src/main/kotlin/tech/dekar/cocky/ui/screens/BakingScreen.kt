@@ -1,4 +1,4 @@
-package tech.dekar.cocky
+package tech.dekar.cocky.ui.screens
 
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.BorderStroke
@@ -37,6 +37,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import tech.dekar.cocky.BakingViewModel
+import tech.dekar.cocky.R
+import tech.dekar.cocky.ui.UiState
 
 val images = arrayOf(
     // Image generated using Gemini from the prompt "cupcake image"
@@ -44,12 +47,12 @@ val images = arrayOf(
     // Image generated using Gemini from the prompt "cookies images"
     R.drawable.baked_goods_2,
     // Image generated using Gemini from the prompt "cake images"
-    R.drawable.baked_goods_3,
+    R.drawable.baked_goods_3
 )
 val imageDescriptions = arrayOf(
     R.string.image1_description,
     R.string.image2_description,
-    R.string.image3_description,
+    R.string.image3_description
 )
 
 @Composable

@@ -1,4 +1,4 @@
-package tech.dekar.cocky
+package tech.dekar.cocky.ui
 
 /**
  * A sealed hierarchy describing the state of the text generation.
