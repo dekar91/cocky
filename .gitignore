@@ -35,3 +35,7 @@ google-services.json
 
 sentry.properties
 
+# Kotlin Multiplatform internal metadata
+.kotlin/metadata
+
+
