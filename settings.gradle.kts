@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Cocky"
 include(":app")
- 
+include(":shared")
+include(":desktop")
