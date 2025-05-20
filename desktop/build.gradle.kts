@@ -36,6 +36,16 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "tech.dekar.cocky.desktop"
             packageVersion = "1.0.0"
+
+            windows {
+                // Можно указать iconFile, если есть .ico
+                // iconFile.set(project.file("src/desktopMain/resources/icon.ico"))
+                menuGroup = "Cocky App"
+                upgradeUuid = "dd203f26-c990-4a4d-b612-75aa916bb705" // должен быть уникальным для приложения
+            }
         }
     }
+
+
 }
+
