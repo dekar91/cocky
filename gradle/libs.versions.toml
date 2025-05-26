@@ -31,7 +31,7 @@ hiltNavigation = "1.2.0"
 # Новые для тестирования
 coroutinesTest = "1.10.2"
 mockk = "1.14.2"
-skyscreamer= "1.5.1"
+skyscreamer= "1.5.3"
 
 firebase = "4.4.2"
 
