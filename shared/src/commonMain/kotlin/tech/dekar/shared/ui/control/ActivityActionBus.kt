@@ -1,13 +1,10 @@
-package tech.dekar.cocky.ui.controls
+package tech.dekar.shared.ui.control
 
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class ActivityActionBus @Inject constructor() {
+class ActivityActionBus {
     private val _actions = MutableSharedFlow<ActivityActions>()
     val actions: SharedFlow<ActivityActions> = _actions.asSharedFlow()
 

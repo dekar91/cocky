@@ -1,10 +1,15 @@
 package tech.dekar.cocky.recepie
+
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-class RecipeViewModel : ViewModel() {
+class RecipeViewModel(
+    private val mainDispatcher: CoroutineDispatcher,
+    private val ioDispatcher: CoroutineDispatcher
+) : ViewModel() {
     private val _title = MutableStateFlow("")
     val title: StateFlow<String> = _title
 

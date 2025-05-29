@@ -1,0 +1,28 @@
+import kotlin.time.Instant;
+
+CREATE TABLE IF NOT EXISTS recipes (
+    id  TEXT NOT NULL PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    imageUrl TEXT,
+    videoUrl TEXT,
+    created_at TEXT NOT NULL DEFAULT (strftime('%s', 'now')),
+    updated_at TEXT NOT NULL DEFAULT (strftime('%s', 'now'))
+);
+CREATE UNIQUE INDEX recepie_title_uk ON recipes(title);
+
+selectWithCursor:
+SELECT * FROM recipes WHERE id > ?  ORDER BY created_at DESC, id LIMIT ?;
+
+selectWithLimit:
+SELECT * FROM recipes ORDER BY created_at DESC, id LIMIT ?;
+
+selectById:
+SELECT * FROM recipes WHERE id = ?;
+
+insert:
+INSERT INTO recipes(id, created_at, updated_at, title, description,imageUrl, videoUrl)
+VALUES (?, ?, ?,?,?, ?, ?);
+
+deleteById:
+DELETE FROM recipes WHERE id = ?;

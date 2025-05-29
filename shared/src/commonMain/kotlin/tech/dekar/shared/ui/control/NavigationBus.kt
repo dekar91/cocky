@@ -1,14 +1,11 @@
-package tech.dekar.lockme
+package tech.dekar.shared.ui.control
 
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import tech.dekar.cocky.ui.controls.NavigationScreens
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class NavigationBus @Inject constructor() {
+
+class NavigationBus {
     private val _actions = MutableSharedFlow<NavigationScreens>(extraBufferCapacity = 1)
     val actions: SharedFlow<NavigationScreens> = _actions.asSharedFlow()
 
@@ -16,3 +13,4 @@ class NavigationBus @Inject constructor() {
         _actions.emit(action)
     }
 }
+

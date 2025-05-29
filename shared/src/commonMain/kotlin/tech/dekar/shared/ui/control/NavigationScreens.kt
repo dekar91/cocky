@@ -1,4 +1,4 @@
-package tech.dekar.cocky.ui.controls
+package tech.dekar.shared.ui.control
 
 sealed class NavigationScreens(val route: String) {
     object Home : NavigationScreens(route = "home")

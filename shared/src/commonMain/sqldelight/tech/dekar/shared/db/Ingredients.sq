@@ -1,0 +1,37 @@
+import app.cash.sqldelight.dialect.api.PrimitiveType.TEXT;
+import kotlin.time.Instant;
+import tech.dekar.shared.domain.model.RecipeUnit;
+
+CREATE TABLE ingredients (
+    id TEXT NOT NULL PRIMARY KEY,
+    recipe_id TEXT NOT NULL,
+    created_at TEXT AS TEXT NOT NULL DEFAULT (strftime('%s', 'now')),
+    updated_at TEXT AS TEXT NOT NULL DEFAULT (strftime('%s', 'now')),
+    name TEXT NOT NULL,
+    quantity TEXT NOT NULL,
+    unit TEXT  AS RecipeUnit,
+    UNIQUE(name, recipe_id),
+    FOREIGN KEY(recipe_id) REFERENCES recipes(id) ON DELETE CASCADE
+);
+
+selectWithCursor:
+SELECT * FROM ingredients WHERE id > ? ORDER BY id LIMIT ?;
+
+selectWithLimit:
+SELECT * FROM ingredients ORDER BY id LIMIT ?;
+
+selectById:
+SELECT * FROM ingredients WHERE id = ?;
+
+selectByRecipeId:
+SELECT * FROM ingredients WHERE recipe_id = ? ORDER BY name, id;
+
+insert:
+INSERT INTO ingredients(id, recipe_id,created_at, updated_at, name, quantity, unit)
+VALUES (?, ?, ?,?, ?, ?, ?);
+
+deleteById:
+DELETE FROM ingredients WHERE id = ?;
+
+deleteByRecipeId:
+DELETE FROM ingredients WHERE recipe_id = ?;

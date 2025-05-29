@@ -30,7 +30,7 @@
 
 # --- Сохраняем номера строк для вашего кода ---
 -keepattributes SourceFile,LineNumberTable
--keep class tech.dekar.lockme.** { *; }
+-keep class tech.dekar.cocky.** { *; }
 
 # --- Если используешь reflection / JNI ---
 -keepclasseswithmembers class * {

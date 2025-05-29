@@ -1,4 +1,4 @@
-package tech.dekar.cocky.di
+package tech.dekar.shared.di
 
 interface Logger {
     fun d(tag: String, msg: String): Int

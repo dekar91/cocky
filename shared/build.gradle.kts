@@ -2,7 +2,9 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.sqldelight)
 }
+
 
 kotlin {
 
@@ -59,17 +61,28 @@ kotlin {
     // common to share sources between related targets.
     // See: https://kotlinlang.org/docs/multiplatform-hierarchy.html
     sourceSets {
-        commonMain {
+        all {
+            languageSettings {
+                languageVersion = libs.versions.kotlin.compiler.get()
+                apiVersion = libs.versions.kotlin.compiler.get()
+            }
+        }
+        val commonMain by getting {
             dependencies {
                 implementation(libs.kotlin.stdlib)
-                implementation("org.jetbrains.compose.runtime:runtime:1.7.3")
+                implementation(libs.kotlin.runtime.compose)
+
+                implementation(libs.sqldelight.runtime)
+                implementation(libs.sqldelight.coroutines)
+
+                implementation(libs.koin.core)
 
                 // Add KMP dependencies here
             }
         }
 
         commonTest {
-            dependencies{
+            dependencies {
                 implementation(libs.kotlinx.jetbrains.test)
             }
         }
@@ -79,6 +92,8 @@ kotlin {
                 // Add Android-specific dependencies here. Note that this source set depends on
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.
+
+                implementation(libs.sqldelight.android)
             }
         }
 
@@ -101,12 +116,18 @@ kotlin {
         }
         val desktopMain by getting {
             dependencies {
-                implementation("org.jetbrains.compose.runtime:runtime:1.7.3")
-
-
+                implementation(libs.kotlin.runtime.compose)
+                implementation(libs.sqldelight.sqlite)
 
             }
         }
     }
+}
 
+sqldelight {
+    databases {
+        create("CockyDatabase") {
+            packageName.set("tech.dekar.shared.db")
+        }
+    }
 }

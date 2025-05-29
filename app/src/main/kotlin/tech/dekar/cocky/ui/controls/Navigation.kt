@@ -4,17 +4,17 @@ import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.launch
+import org.koin.androidx.compose.koinViewModel
 import tech.dekar.cocky.configs.Utils.logTag
 import tech.dekar.cocky.recepie.RecipeCreatorScreen
 import tech.dekar.cocky.recepie.RecipeViewModel
-import tech.dekar.lockme.NavigationBus
+import tech.dekar.shared.ui.control.NavigationBus
+import tech.dekar.shared.ui.control.NavigationScreens
 
 @Composable
 fun Navigation(
@@ -49,12 +49,12 @@ fun Navigation(
 
     NavHost(navController = navController, startDestination = NavigationScreens.Home.route) {
         composable(NavigationScreens.Home.route) {
-            val viewModel = hiltViewModel<RecipeViewModel>()
+            val viewModel = koinViewModel<RecipeViewModel>()
             RecipeCreatorScreen(viewModel)
         }
 
         composable(NavigationScreens.CreatedRecipe.route) {
-            val viewModel = hiltViewModel<RecipeViewModel>()
+            val viewModel = koinViewModel<RecipeViewModel>()
             RecipeCreatorScreen(viewModel)
         }
     }

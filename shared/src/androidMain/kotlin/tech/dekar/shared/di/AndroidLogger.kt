@@ -1,4 +1,4 @@
-package tech.dekar.cocky.di
+package tech.dekar.shared.di
 
 import android.util.Log
 

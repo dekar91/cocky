@@ -1,0 +1,20 @@
+import app.cash.sqldelight.dialect.api.PrimitiveType.TEXT;
+
+CREATE TABLE recipe_steps (
+    id TEXT NOT NULL PRIMARY KEY,
+    recipe_id TEXT NOT NULL,
+    created_at TEXT AS TEXT NOT NULL DEFAULT (strftime('%s', 'now')),
+    updated_at TEXT AS TEXT NOT NULL DEFAULT (strftime('%s', 'now')),
+    step_number INTEGER NOT NULL,
+    description TEXT NOT NULL,
+    imageUrl TEXT,
+    UNIQUE(step_number, recipe_id),
+    FOREIGN KEY(recipe_id) REFERENCES recipes(id) ON DELETE CASCADE
+);
+
+selectByRecipeId:
+SELECT * FROM recipe_steps WHERE recipe_id = ? ORDER BY step_number, id;
+
+insert:
+INSERT INTO recipe_steps (id, recipe_id, created_at, updated_at, step_number, description, imageUrl)
+VALUES (?, ?, ?, ?, ?, ?, ?);

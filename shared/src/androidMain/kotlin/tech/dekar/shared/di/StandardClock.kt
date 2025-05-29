@@ -1,4 +1,4 @@
-package tech.dekar.cocky.di
+package tech.dekar.shared.di
 
 class StandardClock : DekarClock {
     override fun elapsedRealtime(): Long {

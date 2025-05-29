@@ -7,11 +7,9 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
-    alias(libs.plugins.hilt) // Hilt DI
     alias(libs.plugins.ktlint)
     alias(libs.plugins.ktlint.idea)
     alias(libs.plugins.sentry)
-    kotlin("kapt") // Hilt compiler
     alias(libs.plugins.advancedBuildVersion)
 }
 
@@ -116,10 +114,10 @@ android {
         applicationId = "tech.dekar.cocky"
         minSdk = 21
         targetSdk = 35
-        versionCode = 11 // advancedVersioning.versionCode
+        versionCode =  advancedVersioning.versionCode
         versionName = getGitVersionName()
 
-        testInstrumentationRunner = "tech.dekar.lockme.CustomTestRunner"
+        testInstrumentationRunner = "tech.dekar.cocky.CustomTestRunner"
 
         buildConfigField("Boolean", "SENTRY_ENABLED", "false")
         buildConfigField("String", "SENTRY_DSN", sentryDsn)
@@ -195,11 +193,7 @@ android {
         implementation(libs.firebase.analytics)
         implementation(libs.firebase.crashlytics)
 
-        // 🟢 Dependency Injection (Hilt)
-        implementation(libs.hilt.android)
-
-        kapt(libs.hilt.compiler)
-        implementation(libs.androidx.hilt.navigation.compose)
+        implementation(libs.sqldelight.android)
 
         // 🧱 Core & Lifecycle
         implementation(libs.androidx.core.ktx)
@@ -208,7 +202,6 @@ android {
         implementation(libs.androidx.lifecycle.viewmodel.compose)
 
         implementation(libs.androidx.appcompat)
-        implementation(libs.android.material3)
 
         // 🧩 Compose
         implementation(platform(libs.androidx.compose.bom))
@@ -242,9 +235,13 @@ android {
         androidTestImplementation(libs.androidx.espresso.core)
         androidTestImplementation(platform(libs.androidx.compose.bom))
         androidTestImplementation(libs.androidx.ui.test.junit4)
-        androidTestImplementation(libs.hilt.testing)
+
+        // 🟢 Dependency Injection - Koin
+        implementation(libs.koin.android)
+        implementation(libs.koin.androidx.compose)
+        implementation(libs.koin.annotations)
+
         androidTestImplementation(libs.androidx.navigation.testing)
-        kaptAndroidTest(libs.hilt.compiler)
         androidTestImplementation(libs.mockk.android)
         androidTestImplementation(libs.skyscreamer.jsonassert)
 

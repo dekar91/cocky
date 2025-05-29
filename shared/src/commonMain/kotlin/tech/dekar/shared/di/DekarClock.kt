@@ -1,4 +1,4 @@
-package tech.dekar.cocky.di
+package tech.dekar.shared.di
 
 interface DekarClock {
     fun elapsedRealtime(): Long

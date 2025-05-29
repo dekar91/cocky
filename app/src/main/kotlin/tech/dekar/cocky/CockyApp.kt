@@ -1,23 +1,28 @@
 package tech.dekar.cocky
 
-import dagger.hilt.android.HiltAndroidApp
 import io.sentry.android.core.SentryAndroid
-import jakarta.inject.Inject
+import org.koin.android.ext.android.inject
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.GlobalContext.startKoin
 import tech.dekar.cocky.configs.SentryConfig
 import tech.dekar.cocky.configs.Utils.logTag
-import tech.dekar.cocky.di.Logger
+import tech.dekar.cocky.di.KoinAndroidModule.androidModule
+import tech.dekar.shared.di.CommonMainKoinModule.commonMainModule
+import tech.dekar.shared.di.Logger
 
-@HiltAndroidApp
 class CockyApp : BaseApp() {
 
-    @Inject
-    lateinit var sentryConfig: SentryConfig
+    val sentryConfig: SentryConfig by inject<SentryConfig>()
 
-    @Inject
-    lateinit var logger: Logger
+    val logger: Logger by inject<Logger>()
 
     override fun onCreate() {
         super.onCreate()
+
+        startKoin {
+            androidContext(this@CockyApp)
+            modules(commonMainModule, androidModule)
+        }
 
         if (sentryConfig.enabled) {
             initSentry()
