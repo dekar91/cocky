@@ -25,14 +25,14 @@ class IngredientLocalDataSource (db: CockyDatabase):Repository<Ingredients, Ingr
     }
 
 
-    override fun toModel(data: Ingredients): Ingredient =
+    override fun toModel(queryResult: Ingredients): Ingredient =
         Ingredient(
-            id = data.id,
-            createdAt = data.created_at,
-            updatedAt = data.updated_at,
-            recipeId = data.recipe_id,
-            name = data.name,
-            quantity = data.quantity,
-            unit = data.unit,
+            id = queryResult.id,
+            createdAt = queryResult.created_at,
+            updatedAt = queryResult.updated_at,
+            recipeId = queryResult.recipe_id,
+            name = queryResult.name,
+            quantity = queryResult.quantity,
+            unit = queryResult.unit,
         )
 }

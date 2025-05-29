@@ -1,11 +1,28 @@
 package tech.dekar.shared.ui
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import tech.dekar.shared.domain.model.Recipe
-import kotlin.time.Instant
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateRecipeScreen(
     initialRecipe: Recipe? = null,
@@ -17,17 +34,15 @@ fun CreateRecipeScreen(
     var imageUrl by remember { mutableStateOf(initialRecipe?.imageUrl ?: "") }
     var videoUrl by remember { mutableStateOf(initialRecipe?.videoUrl ?: "") }
 
-    Scaffold(
+    BaseScreen(
         topBar = {
             TopAppBar(
                 title = { Text(text = if (initialRecipe == null) "Создать рецепт" else "Редактировать рецепт") }
             )
         },
-        content = { padding ->
+        content = {
             Column(
                 modifier = Modifier
-                    .padding(padding)
-                    .padding(16.dp)
                     .fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
@@ -71,9 +86,9 @@ fun CreateRecipeScreen(
                     }
                     Button(
                         onClick = {
-                            val now = Instant.now().toString()
+                            val now = ""
                             val recipe = Recipe(
-                                id = initialRecipe?.id ?: UUID.randomUUID().toString(),
+                                id = initialRecipe?.id ?: "",
                                 createdAt = initialRecipe?.createdAt ?: now,
                                 updatedAt = now,
                                 title = title,
@@ -89,6 +104,7 @@ fun CreateRecipeScreen(
                     }
                 }
             }
+
         }
     )
 }

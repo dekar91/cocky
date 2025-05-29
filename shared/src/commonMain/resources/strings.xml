@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Cocky</string>
+    <string name="recipe_action_create">Create recipe</string>
+</resources>

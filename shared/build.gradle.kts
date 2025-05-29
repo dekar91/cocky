@@ -1,8 +1,12 @@
+
+import dev.icerock.gradle.MRVisibility
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.sqldelight)
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 
@@ -16,8 +20,8 @@ kotlin {
         compileSdk = 35
         minSdk = 21
 
-        withHostTestBuilder {
-        }
+//        withHostTestBuilder {
+//        }
 
         withDeviceTestBuilder {
             sourceSetTreeName = "test"
@@ -70,7 +74,17 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.kotlin.stdlib)
-                implementation(libs.kotlin.runtime.compose)
+                implementation(libs.kotlin.compose.runtime)
+                implementation(libs.kotlin.compose.foundation)
+                implementation(libs.kotlin.compose.material3)
+                implementation(libs.kotlin.compose.ui)
+                implementation(libs.kotlin.compose.ui.graphics)
+                implementation(libs.kotlin.compose.ui.tooling.preview)
+
+                implementation("dev.icerock.moko:resources:0.24.5")
+                implementation("dev.icerock.moko:resources-compose:0.24.5") // for compose multiplatform
+
+
 
                 implementation(libs.sqldelight.runtime)
                 implementation(libs.sqldelight.coroutines)
@@ -84,6 +98,9 @@ kotlin {
         commonTest {
             dependencies {
                 implementation(libs.kotlinx.jetbrains.test)
+
+                implementation("dev.icerock.moko:resources-test:0.24.5")
+
             }
         }
 
@@ -107,6 +124,15 @@ kotlin {
 
         iosMain {
             dependencies {
+                implementation(libs.kotlin.stdlib)
+                implementation(libs.kotlin.compose.runtime)
+                implementation(libs.kotlin.compose.foundation)
+                implementation(libs.kotlin.compose.material3)
+                implementation(libs.kotlin.compose.ui)
+                implementation(libs.kotlin.compose.ui.graphics)
+//                implementation(libs.kotlin.compose.ui.tooling.preview)
+
+
                 // Add iOS-specific dependencies here. This a source set created by Kotlin Gradle
                 // Plugin (KGP) that each specific iOS target (e.g., iosX64) depends on as
                 // part of KMP’s default source set hierarchy. Note that this source set depends
@@ -116,13 +142,23 @@ kotlin {
         }
         val desktopMain by getting {
             dependencies {
-                implementation(libs.kotlin.runtime.compose)
-                implementation(libs.sqldelight.sqlite)
+
+                implementation(libs.sqldelight.sqlite) // SQLite (для дескт)
 
             }
         }
     }
 }
+
+//tasks.withType<VerifyMigrationTask>().configureEach {
+//    val folder = "${rootProject.layout.buildDirectory}/tmp/sqlite"
+//    doFirst {
+//        file(folder).mkdirs()
+//    }
+//    jvm
+//
+////    jvmArgs("-Dorg.sqlite.tmpdir=${rootProject.layout.buildDirectory}/tmp/sqlite")
+//}
 
 sqldelight {
     databases {
@@ -130,4 +166,10 @@ sqldelight {
             packageName.set("tech.dekar.shared.db")
         }
     }
+}
+
+multiplatformResources {
+    resourcesPackage.set("tech.dekar.shared") // required
+    resourcesClassName.set("SharedRes") // optional, default MR
+    resourcesVisibility.set(MRVisibility.Internal) // optional, default Public
 }

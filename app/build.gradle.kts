@@ -114,7 +114,7 @@ android {
         applicationId = "tech.dekar.cocky"
         minSdk = 21
         targetSdk = 35
-        versionCode =  advancedVersioning.versionCode
+        versionCode = advancedVersioning.versionCode
         versionName = getGitVersionName()
 
         testInstrumentationRunner = "tech.dekar.cocky.CustomTestRunner"

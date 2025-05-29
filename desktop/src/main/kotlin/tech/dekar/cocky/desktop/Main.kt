@@ -1,25 +1,25 @@
 package tech.dekar.cocky.desktop
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import tech.dekar.shared.ui.CreateRecipeScreen
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        var counter by remember { mutableStateOf(0) }
-        Button(onClick = { counter++ }) {
-            Text("Clicked $counter times")
-        }
+        CreateRecipeScreen(
+            onSave = {},
+            onCancel = {}
+        )
+
+//        var counter by remember { mutableStateOf(0) }
+//        Button(onClick = { counter++ }) {
+//            Text("Clicked $counter times")
+//        }
     }
 }
 

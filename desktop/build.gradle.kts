@@ -1,4 +1,5 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+//import app.cash.sqldelight.gradle.VerifyMigrationTask
 
 //import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
@@ -45,6 +46,15 @@ compose.desktop {
             }
         }
     }
+
+//    tasks.withType<VerifyMigrationTask>().configureEach {
+//        val folder = "${rootProject.layout.buildDirectory}/tmp/sqlite"
+//        doFirst {
+//            file(folder).mkdirs()
+//        }
+//
+////    jvmArgs("-Dorg.sqlite.tmpdir=${rootProject.layout.buildDirectory}/tmp/sqlite")
+//    }
 
 
 }

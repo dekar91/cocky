@@ -35,15 +35,15 @@ class RecipeLocalDataSource(db: CockyDatabase) : Repository<Recipes, Recipe>() {
     }
 
 
-  override fun toModel(data: Recipes): Recipe =
+  override fun toModel(queryResult: Recipes): Recipe =
         Recipe(
-            id = data.id,
-            createdAt = data.created_at,
-            updatedAt = data.updated_at,
-            title = data.title,
-            description = data.description,
-            imageUrl = data.imageUrl,
-            videoUrl = data.videoUrl
+            id = queryResult.id,
+            createdAt = queryResult.created_at,
+            updatedAt = queryResult.updated_at,
+            title = queryResult.title,
+            description = queryResult.description,
+            imageUrl = queryResult.imageUrl,
+            videoUrl = queryResult.videoUrl
         )
 
 }

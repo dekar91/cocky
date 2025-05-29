@@ -13,6 +13,7 @@ import org.koin.androidx.compose.koinViewModel
 import tech.dekar.cocky.configs.Utils.logTag
 import tech.dekar.cocky.recepie.RecipeCreatorScreen
 import tech.dekar.cocky.recepie.RecipeViewModel
+import tech.dekar.shared.ui.CreateRecipeScreen
 import tech.dekar.shared.ui.control.NavigationBus
 import tech.dekar.shared.ui.control.NavigationScreens
 
@@ -50,7 +51,11 @@ fun Navigation(
     NavHost(navController = navController, startDestination = NavigationScreens.Home.route) {
         composable(NavigationScreens.Home.route) {
             val viewModel = koinViewModel<RecipeViewModel>()
-            RecipeCreatorScreen(viewModel)
+            CreateRecipeScreen(
+                onSave = {},
+                onCancel = {}
+            )
+//            RecipeCreatorScreen(viewModel)
         }
 
         composable(NavigationScreens.CreatedRecipe.route) {
