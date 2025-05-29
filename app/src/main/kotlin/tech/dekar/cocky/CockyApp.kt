@@ -7,8 +7,8 @@ import org.koin.core.context.GlobalContext.startKoin
 import tech.dekar.cocky.configs.SentryConfig
 import tech.dekar.cocky.configs.Utils.logTag
 import tech.dekar.cocky.di.KoinAndroidModule.androidModule
-import tech.dekar.shared.di.CommonMainKoinModule.commonMainModule
-import tech.dekar.shared.di.Logger
+import tech.dekar.cocky.shared.di.CommonMainKoinModule.commonMainModule
+import tech.dekar.cocky.shared.di.Logger
 
 class CockyApp : BaseApp() {
 

@@ -16,7 +16,7 @@ kotlin {
     // which platforms this KMP module supports.
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
     androidLibrary {
-        namespace = "tech.dekar.shared"
+        namespace = "tech.dekar.cocky.shared"
         compileSdk = 35
         minSdk = 21
 
@@ -163,13 +163,13 @@ kotlin {
 sqldelight {
     databases {
         create("CockyDatabase") {
-            packageName.set("tech.dekar.shared.db")
+            packageName.set("tech.dekar.cocky.shared.db")
         }
     }
 }
 
 multiplatformResources {
-    resourcesPackage.set("tech.dekar.shared") // required
+    resourcesPackage.set("tech.dekar.cocky.shared") // required
     resourcesClassName.set("SharedRes") // optional, default MR
     resourcesVisibility.set(MRVisibility.Internal) // optional, default Public
 }

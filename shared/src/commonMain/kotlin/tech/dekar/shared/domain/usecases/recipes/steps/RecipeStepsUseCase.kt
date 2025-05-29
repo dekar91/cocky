@@ -1,9 +1,0 @@
-package tech.dekar.shared.domain.usecases.recipes.steps
-
-import tech.dekar.shared.domain.usecases.recipes.steps.data.CreateRecipeStepUseCase
-import tech.dekar.shared.domain.usecases.recipes.steps.data.GetRecipeStepsByRecipeIdUseCase
-
-data class RecipeStepsUseCase(
-    val getByRecipeId: GetRecipeStepsByRecipeIdUseCase,
-    val create: CreateRecipeStepUseCase,
-)

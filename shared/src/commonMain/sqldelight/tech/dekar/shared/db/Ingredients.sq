@@ -1,4 +1,4 @@
-import tech.dekar.shared.domain.model.RecipeUnit;
+import  tech.dekar.cocky.shared.domain.model.RecipeUnit;
 
 CREATE TABLE ingredients (
     id TEXT NOT NULL PRIMARY KEY,

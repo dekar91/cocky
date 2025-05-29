@@ -13,9 +13,9 @@ import org.koin.androidx.compose.koinViewModel
 import tech.dekar.cocky.configs.Utils.logTag
 import tech.dekar.cocky.recepie.RecipeCreatorScreen
 import tech.dekar.cocky.recepie.RecipeViewModel
-import tech.dekar.shared.ui.CreateRecipeScreen
-import tech.dekar.shared.ui.control.NavigationBus
-import tech.dekar.shared.ui.control.NavigationScreens
+import tech.dekar.cocky.shared.ui.CreateRecipeScreen
+import tech.dekar.cocky.shared.ui.control.NavigationBus
+import tech.dekar.cocky.shared.ui.control.NavigationScreens
 
 @Composable
 fun Navigation(
