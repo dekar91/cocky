@@ -67,6 +67,8 @@ kotlin {
                 implementation(libs.kotlin.compose.material.icons.core)
                 // Add KMP dependencies here
 
+                implementation("org.jetbrains.androidx.navigation:navigation-compose:2.9.0-beta01")
+
                 // Remove androidx navigation for desktop compatibility
                 // implementation("androidx.navigation:navigation-compose:2.9.0")
             }

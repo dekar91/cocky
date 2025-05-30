@@ -47,6 +47,7 @@ navigationTesting = "2.9.0"
 advancedBuildVersion = "3.0.0"
 kotlinStdlib = "2.1.21"
 sqldelight = "2.1.0"
+navigationComposeJvmstubs = "2.9.0"
 
 
 [libraries]
@@ -139,6 +140,7 @@ kotlin-kotest-runner = {group = "io.kotest", name = "kotest-runner-junit5", vers
 
 # Hilt Testing
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlinStdlib" }
+androidx-navigation-compose-jvmstubs = { group = "androidx.navigation", name = "navigation-compose-jvmstubs", version.ref = "navigationComposeJvmstubs" }
 
 [plugins]
 sentry = { id = "io.sentry.android.gradle", version.ref = "sentry" }

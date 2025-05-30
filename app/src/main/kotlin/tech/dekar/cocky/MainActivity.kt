@@ -3,6 +3,7 @@ package tech.dekar.cocky
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.navigation.compose.rememberNavController
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -20,7 +21,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Navigation(navigationBus)
+            Navigation(
+              rememberNavController(),
+                navigationBus)
         }
 
         val driver: SqlDriver = AndroidSqliteDriver(CockyDatabase.Schema, applicationContext, "test.db")

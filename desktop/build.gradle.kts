@@ -26,6 +26,7 @@ dependencies {
     implementation(compose.desktop.currentOs)
     implementation(compose.material)
     implementation(compose.runtime)
+    implementation(libs.androidx.navigation.compose.jvmstubs)
 }
 
 compose.desktop {

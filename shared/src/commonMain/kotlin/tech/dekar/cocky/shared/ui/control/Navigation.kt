@@ -1,62 +1,41 @@
 package tech.dekar.cocky.shared.ui.control
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
-import kotlinx.coroutines.launch
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import tech.dekar.cocky.shared.ui.CreateRecipeScreen
 import tech.dekar.cocky.shared.ui.RecipeCreatedScreen
 
-sealed class Screen {
-    object Home : Screen()
-    object CreateRecipe : Screen()
-    object FinishedRecipe : Screen()
-}
-
 @Composable
 fun Navigation(
+    navController: NavHostController = rememberNavController(),
     navigationBus: NavigationBus,
 ) {
-    var currentScreen by remember { mutableStateOf<Screen>(Screen.Home) }
-    val coroutineScope = rememberCoroutineScope()
-
-    DisposableEffect(Unit) {
-        val job = coroutineScope.launch {
-            navigationBus.actions.collect { target ->
-                currentScreen = target
-            }
-        }
-
-        onDispose {
-            job.cancel()
-        }
-    }
-
-    when (currentScreen) {
-        Screen.Home -> {
+    NavHost(navController = navController, startDestination = Screens.Home.route) {
+        composable(Screens.Home.route) {
             CreateRecipeScreen(
                 onSave = { _ ->
-                    currentScreen = Screen.FinishedRecipe
+                    navController.navigate(Screens.FinishedRecipe.route)
                 },
                 initialRecipe = null,
                 onCancel = {}
             )
         }
-        Screen.FinishedRecipe -> {
+
+        composable(Screens.CreateRecipe.route) {
+            CreateRecipeScreen(
+                onSave = { _ ->
+                    navController.navigate(Screens.FinishedRecipe.route)
+                },
+                initialRecipe = null,
+                onCancel = {}
+            )
+        }
+
+        composable(Screens.FinishedRecipe.route) {
             RecipeCreatedScreen()
-        }
-        Screen.CreateRecipe -> {
-            CreateRecipeScreen(
-                onSave = { _ ->
-                    currentScreen = Screen.FinishedRecipe
-                },
-                initialRecipe = null,
-                onCancel = {}
-            )
         }
     }
 }
