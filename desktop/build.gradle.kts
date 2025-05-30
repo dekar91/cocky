@@ -1,13 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
-//import app.cash.sqldelight.gradle.VerifyMigrationTask
-
-//import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-
 plugins {
     kotlin("jvm")
     alias(libs.plugins.kotlin.compose)
-
     alias(libs.plugins.kotlin.main.compose)
 }
 
@@ -26,7 +21,17 @@ dependencies {
     implementation(compose.desktop.currentOs)
     implementation(compose.material)
     implementation(compose.runtime)
-    implementation(libs.androidx.navigation.compose.jvmstubs)
+    
+    // Koin
+    implementation(libs.koin.core)
+    implementation(libs.koin.compose)
+
+    implementation(libs.sqldelight.sqlite)
+    
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+
 }
 
 compose.desktop {
@@ -55,6 +60,4 @@ compose.desktop {
 //
 ////    jvmArgs("-Dorg.sqlite.tmpdir=${rootProject.layout.buildDirectory}/tmp/sqlite")
 //    }
-
-
 }

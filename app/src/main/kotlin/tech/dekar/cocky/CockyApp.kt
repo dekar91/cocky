@@ -13,7 +13,6 @@ import tech.dekar.cocky.shared.di.Logger
 class CockyApp : BaseApp() {
 
     val sentryConfig: SentryConfig by inject<SentryConfig>()
-
     val logger: Logger by inject<Logger>()
 
     override fun onCreate() {

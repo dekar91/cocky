@@ -9,6 +9,7 @@ import tech.dekar.cocky.shared.di.DispatchersTypes.MAIN
 
 object KoinModule {
     val androidMainModule = module {
+
         single<CoroutineDispatcher>(named(MAIN)) {Dispatchers.Main }
         single<CoroutineDispatcher>(named(IO)) {  Dispatchers.IO  }
         single<DekarClock> { StandardClock() }

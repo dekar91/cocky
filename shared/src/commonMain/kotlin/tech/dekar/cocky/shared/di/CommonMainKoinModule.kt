@@ -9,6 +9,7 @@ object CommonMainKoinModule {
     val commonMainModule = module {
         singleOf(::NavigationBus)
         singleOf(::ActivityActionBus)
-
+        
+        includes(recipeModule)
     }
 }

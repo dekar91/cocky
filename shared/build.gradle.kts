@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.kotlin.kotest)
 }
 
-
 kotlin {
 
     // Target declarations - add or remove as needed below. These define
@@ -64,6 +63,7 @@ kotlin {
                 implementation(libs.sqldelight.runtime)
                 implementation(libs.sqldelight.coroutines)
                 implementation(libs.koin.core)
+                implementation(libs.koin.compose)
                 implementation(libs.kotlin.compose.material.icons.core)
                 // Add KMP dependencies here
 
@@ -182,6 +182,7 @@ sqldelight {
             verifyMigrations.set(true)
             deriveSchemaFromMigrations.set(true)
             migrationOutputDirectory.set(file("${getLayout().buildDirectory}/tmp/migrations"))
+
         }
     }
 }

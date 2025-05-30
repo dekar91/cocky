@@ -63,6 +63,7 @@ koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin"
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koinAnnotations" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
 
 # Core and lifecycle
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -124,7 +125,6 @@ mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 
 mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 mockk-common = { group = "io.mockk", name = "mockk-common", version.ref = "mockk" }
-#mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
 
 skyscreamer-jsonassert = { group = "org.skyscreamer", name = "jsonassert", version.ref = "skyscreamer" }
 
@@ -163,8 +163,6 @@ kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref 
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 android-library = { id = "com.android.library" }
 kotlin-kotest = { id= "io.kotest.multiplatform", version.ref = "koTest" }
-
-
 
 ## DB
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }

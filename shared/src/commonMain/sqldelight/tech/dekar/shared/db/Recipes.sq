@@ -4,8 +4,8 @@ CREATE TABLE IF NOT EXISTS recipes (
     description TEXT,
     imageUrl TEXT,
     videoUrl TEXT,
-    created_at TEXT NOT NULL DEFAULT (strftime('%s', 'now')),
-    updated_at TEXT NOT NULL DEFAULT (strftime('%s', 'now'))
+    created_at TEXT NOT NULL,
+    updated_at TEXT NOT NULL
 );
 CREATE UNIQUE INDEX recepie_title_uk ON recipes(title);
 
