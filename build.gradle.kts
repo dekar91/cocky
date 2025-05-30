@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
-//    alias(libs.plugins.kotlin.main.compose) apply false
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin) apply false
 
     alias(libs.plugins.sentry) apply false
@@ -19,14 +18,8 @@ plugins {
 }
 
 tasks.withType<KotlinCompile>().configureEach {
-    kotlinOptions {
-        // Сохраняем прежние флаги и добавляем новый
-        freeCompilerArgs += "-Xexpect-actual-classes"
-    }
-}
 
-buildscript {
-    dependencies {
-        classpath( "dev.icerock.moko:resources-generator:0.24.5")
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
     }
 }

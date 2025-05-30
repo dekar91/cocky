@@ -7,10 +7,10 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import kotlinx.coroutines.DelicateCoroutinesApi
 import org.koin.android.ext.android.inject
-import tech.dekar.cocky.ui.controls.Navigation
-import  tech.dekar.cocky.shared.db.CockyDatabase
+import tech.dekar.cocky.shared.db.CockyDatabase
 import tech.dekar.cocky.shared.ui.control.ActivityActionBus
 import tech.dekar.cocky.shared.ui.control.NavigationBus
+import tech.dekar.cocky.ui.controls.Navigation
 
 class MainActivity : ComponentActivity() {
     val activityActionBus: ActivityActionBus by inject()

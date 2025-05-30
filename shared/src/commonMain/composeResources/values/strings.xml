@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <resources>
     <string name="app_name">Cocky</string>
     <string name="recipe_action_create">Create recipe</string>
+    <string name="recipe_action_edit">Edit recipe</string>
 </resources>

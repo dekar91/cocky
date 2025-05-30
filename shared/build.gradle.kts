@@ -1,12 +1,10 @@
-
-import dev.icerock.gradle.MRVisibility
-
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.sqldelight)
-    id("dev.icerock.mobile.multiplatform-resources")
+    alias(libs.plugins.kotlin.main.compose)
+
 }
 
 
@@ -15,20 +13,7 @@ kotlin {
     // Target declarations - add or remove as needed below. These define
     // which platforms this KMP module supports.
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
-    androidLibrary {
-        namespace = "tech.dekar.cocky.shared"
-        compileSdk = 35
-        minSdk = 21
-
-//        withHostTestBuilder {
-//        }
-
-        withDeviceTestBuilder {
-            sourceSetTreeName = "test"
-        }.configure {
-            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        }
-    }
+    androidTarget()
 
     // For iOS targets, this is also where you should
     // configure native binary output. For more information, see:
@@ -39,21 +24,14 @@ kotlin {
     // https://developer.android.com/kotlin/multiplatform/migrate
     val xcfName = "sharedKit"
 
-    iosX64 {
-        binaries.framework {
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach { iosTarget ->
+        iosTarget.binaries.framework {
             baseName = xcfName
-        }
-    }
-
-    iosArm64 {
-        binaries.framework {
-            baseName = xcfName
-        }
-    }
-
-    iosSimulatorArm64 {
-        binaries.framework {
-            baseName = xcfName
+            isStatic = true
         }
     }
 
@@ -71,24 +49,19 @@ kotlin {
                 apiVersion = libs.versions.kotlin.compiler.get()
             }
         }
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(libs.kotlin.stdlib)
-                implementation(libs.kotlin.compose.runtime)
-                implementation(libs.kotlin.compose.foundation)
-                implementation(libs.kotlin.compose.material3)
-                implementation(libs.kotlin.compose.ui)
+
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.ui)
+                implementation(compose.components.resources)
+
                 implementation(libs.kotlin.compose.ui.graphics)
-                implementation(libs.kotlin.compose.ui.tooling.preview)
-
-                implementation("dev.icerock.moko:resources:0.24.5")
-                implementation("dev.icerock.moko:resources-compose:0.24.5") // for compose multiplatform
-
-
 
                 implementation(libs.sqldelight.runtime)
                 implementation(libs.sqldelight.coroutines)
-
                 implementation(libs.koin.core)
 
                 // Add KMP dependencies here
@@ -98,9 +71,9 @@ kotlin {
         commonTest {
             dependencies {
                 implementation(libs.kotlinx.jetbrains.test)
-
-                implementation("dev.icerock.moko:resources-test:0.24.5")
-
+                implementation(libs.kotlinx.coroutines.test)
+                implementation(libs.mockk.common) // limited mockk for common
+                implementation(libs.kotlin.kotest.engine)
             }
         }
 
@@ -109,16 +82,33 @@ kotlin {
                 // Add Android-specific dependencies here. Note that this source set depends on
                 // commonMain by default and will correctly pull the Android artifacts of any KMP
                 // dependencies declared in commonMain.
-
+                implementation(libs.kotlin.compose.ui.tooling.preview)
                 implementation(libs.sqldelight.android)
             }
         }
 
-        getByName("androidDeviceTest") {
+        jvmTest {
             dependencies {
-                implementation(libs.androidx.runner)
-                implementation(libs.androidx.core)
+                implementation(libs.junit.jupiter.api)
+                runtimeOnly(libs.junit.jupiter.engine)
+                implementation(libs.kotlinx.coroutines.test)
+                implementation(libs.kotlinx.jetbrains.test)
+                implementation(libs.mockk)
+
+            }
+        }
+
+        androidInstrumentedTest {
+            dependencies {
+                // Android/instrumented tests
                 implementation(libs.androidx.junit)
+                implementation(libs.mockk)
+                implementation(libs.kotlin.kotest.runner)
+
+                implementation(libs.androidx.espresso.core)
+                implementation(project.dependencies.platform(libs.androidx.compose.bom))
+                implementation(libs.androidx.ui.test.junit4)
+                // Add Android-specific test dependencies here
             }
         }
 
@@ -140,36 +130,62 @@ kotlin {
                 // KMP dependencies declared in commonMain.
             }
         }
-        val desktopMain by getting {
-            dependencies {
+        val desktopMain by getting
 
-                implementation(libs.sqldelight.sqlite) // SQLite (для дескт)
+        desktopMain.dependencies {
 
-            }
+            implementation(libs.sqldelight.sqlite) // SQLite (для дескт)
+
+
         }
     }
 }
 
-//tasks.withType<VerifyMigrationTask>().configureEach {
-//    val folder = "${rootProject.layout.buildDirectory}/tmp/sqlite"
+android {
+    namespace = "tech.dekar.cocky.shared"    // ваш package для R/Res классов
+    compileSdkVersion(35)
+
+    defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+//    sourceSets["main"].assets.srcDir(
+//        // подключаем сгенерированные .cvr-файлы в assets
+//        "$rootDir.bu/generated/composeResources/commonMain/assets"
+//    )
+//
+//    // Если нужно — остальные настройки тестов:
+//    sourceSets["androidTest"].apply {
+//        // ваша папка с тестами, если нет дефолтной
+//        java.srcDir("src/test/java")
+//    }
+}
+
+//tasks.withType<app.cash.sqldelight.gradle.VerifyMigrationTask>().configureEach {
+//    val folder = "${project.buildDir}/tmp/sqlite"
 //    doFirst {
 //        file(folder).mkdirs()
+//        System.setProperty("org.sqlite.tmpdir", folder)
+//        System.setProperty("java.io.tmpdir", folder)
 //    }
-//    jvm
-//
-////    jvmArgs("-Dorg.sqlite.tmpdir=${rootProject.layout.buildDirectory}/tmp/sqlite")
 //}
 
 sqldelight {
     databases {
         create("CockyDatabase") {
             packageName.set("tech.dekar.cocky.shared.db")
+            verifyMigrations.set(true)
+            deriveSchemaFromMigrations.set(true)
+            migrationOutputDirectory.set(file("${getLayout().buildDirectory}/tmp/migrations"))
         }
     }
 }
 
-multiplatformResources {
-    resourcesPackage.set("tech.dekar.cocky.shared") // required
-    resourcesClassName.set("SharedRes") // optional, default MR
-    resourcesVisibility.set(MRVisibility.Internal) // optional, default Public
+compose.resources {
+    // force generation even if this is only a transitive dependency
+//    generateResClass = "always"
+    // make the Res class public so Android sees it
+    publicResClass = true
+    // match your package structure
+    packageOfResClass = "tech.dekar.cocky.shared.generated.resources"
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">Cocky</string>
+    <string name="recipe_action_create">Добавить рецепт</string>
+    <string name="recipe_action_edit">Изменить рецепт</string>
+</resources>

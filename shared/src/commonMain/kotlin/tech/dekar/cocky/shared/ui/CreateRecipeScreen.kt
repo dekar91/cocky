@@ -20,7 +20,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
 import tech.dekar.cocky.shared.domain.model.Recipe
+import tech.dekar.cocky.shared.generated.resources.Res
+import tech.dekar.cocky.shared.generated.resources.recipe_action_create
+import tech.dekar.cocky.shared.generated.resources.recipe_action_edit
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -37,7 +42,9 @@ fun CreateRecipeScreen(
     BaseScreen(
         topBar = {
             TopAppBar(
-                title = { Text(text = if (initialRecipe == null) "Создать рецепт" else "Редактировать рецепт") }
+                title = { Text(text = if (initialRecipe == null)
+                    stringResource(Res.string.recipe_action_create)
+                else stringResource(Res.string.recipe_action_edit)) }
             )
         },
         content = {

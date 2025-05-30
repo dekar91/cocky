@@ -222,20 +222,6 @@ android {
         implementation(libs.androidx.media3.exoplayer.dash)
         implementation(libs.generativeai)
 
-        // Unit tests
-        testImplementation(libs.junit.jupiter.api)
-        testRuntimeOnly(libs.junit.jupiter.engine)
-        testImplementation(libs.androidx.junit)
-        testImplementation(libs.kotlinx.coroutines.test)
-        testImplementation(libs.kotlinx.jetbrains.test)
-        testImplementation(libs.mockk)
-
-        // Android/instrumented tests
-        androidTestImplementation(libs.androidx.junit)
-        androidTestImplementation(libs.androidx.espresso.core)
-        androidTestImplementation(platform(libs.androidx.compose.bom))
-        androidTestImplementation(libs.androidx.ui.test.junit4)
-
         // 🟢 Dependency Injection - Koin
         implementation(libs.koin.android)
         implementation(libs.koin.androidx.compose)
