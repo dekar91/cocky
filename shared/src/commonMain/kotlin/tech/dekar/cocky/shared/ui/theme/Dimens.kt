@@ -1,4 +1,4 @@
-package tech.dekar.cocky.shared.ui
+package tech.dekar.cocky.shared.ui.theme
 
 import androidx.compose.ui.unit.dp
 

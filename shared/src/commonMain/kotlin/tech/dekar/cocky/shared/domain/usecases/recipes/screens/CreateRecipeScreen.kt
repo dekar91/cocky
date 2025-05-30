@@ -1,4 +1,4 @@
-package tech.dekar.cocky.shared.ui
+package tech.dekar.cocky.shared.domain.usecases.recipes.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
@@ -29,6 +30,7 @@ import tech.dekar.cocky.shared.domain.model.Recipe
 import tech.dekar.cocky.shared.generated.resources.Res
 import tech.dekar.cocky.shared.generated.resources.recipe_action_create
 import tech.dekar.cocky.shared.generated.resources.recipe_action_edit
+import tech.dekar.cocky.shared.ui.screens.BaseScreen
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,14 +48,22 @@ fun CreateRecipeScreen(
     BaseScreen(
         topBar = {
             TopAppBar(
-                title = { Text(text = if (initialRecipe == null)
-                    stringResource(Res.string.recipe_action_create)
-                else stringResource(Res.string.recipe_action_edit)) }
+                title = {
+                    Text(
+                        text = if (initialRecipe == null)
+                            stringResource(Res.string.recipe_action_create)
+                        else stringResource(Res.string.recipe_action_edit)
+                    )
+                }
             )
         },
         bottomBar = {
             BottomAppBar {
-                Icons.Filled.Add
+                Icon(Icons.Filled.Add, contentDescription = "Add")
+                Icon(Icons.Filled.Add, contentDescription = "Add")
+                Icon(Icons.Filled.Add, contentDescription = "Add")
+
+
 //                Icon(Icons.Filled.Add, contentDescription = "Add")
 //                Icon(Icons.Filled, contentDescription = "Add")
                 Text(

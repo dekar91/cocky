@@ -5,8 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import tech.dekar.cocky.shared.ui.CreateRecipeScreen
-import tech.dekar.cocky.shared.ui.RecipeCreatedScreen
+import tech.dekar.cocky.shared.domain.usecases.recipes.screens.CreateRecipeScreen
+import tech.dekar.cocky.shared.domain.usecases.recipes.screens.RecipeCreatedScreen
 
 @Composable
 fun Navigation(

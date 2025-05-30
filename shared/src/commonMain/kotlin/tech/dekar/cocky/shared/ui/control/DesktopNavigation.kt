@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import kotlinx.coroutines.runBlocking
-import tech.dekar.cocky.shared.ui.CreateRecipeScreen
-import tech.dekar.cocky.shared.ui.RecipeCreatedScreen
+import tech.dekar.cocky.shared.domain.usecases.recipes.screens.CreateRecipeScreen
+import tech.dekar.cocky.shared.domain.usecases.recipes.screens.RecipeCreatedScreen
 
 @Composable
 fun DesktopNavigation(navigationBus: NavigationBus) {

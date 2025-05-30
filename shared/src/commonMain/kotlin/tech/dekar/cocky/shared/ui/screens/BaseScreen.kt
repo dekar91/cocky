@@ -1,4 +1,4 @@
-package tech.dekar.cocky.shared.ui
+package tech.dekar.cocky.shared.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,6 +20,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import tech.dekar.cocky.shared.ui.theme.Dimens
+import tech.dekar.cocky.shared.ui.theme.Insets
 
 /**
  * BaseScaffold: Multiplatform composable wrapping content in a Material3 Scaffold with
