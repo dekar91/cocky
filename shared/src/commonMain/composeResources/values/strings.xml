@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
     <string name="app_name">Cocky</string>
+
+    <string name="recipe_title_create">Create recipe</string>
+    <string name="recipe_title_edit">Edit recipe</string>
+
     <string name="recipe_action_create">Create recipe</string>
     <string name="recipe_action_edit">Edit recipe</string>
+
+    <string name="recipe_title">Title</string>
+    <string name="recipe_description">Description</string>
+    <string name="recipe_image">Image</string>
+    <string name="recipe_video">Video</string>
+
+    <string name="recipe_ingredients">Ingredients</string>
+    <string name="recipe_ingredient_name">Ingredient name</string>
+    <string name="recipe_ingredient_amount">Ingredient amount</string>
+
+    <string name="recipe_steps">Steps</string>
+    <string name="recipe_step">Step</string>
+
+    <string name="recipe_step_number">Step number</string>
+    <string name="recipe_step_description">Step description</string>
+    <string name="recipe_step_image">Step image</string>
+
+    <!-- Generic-->
+    <string name="cancel">Cancel</string>
+    <string name="recipe_action_delete">Delete recipe</string>
+    <string name="recipe_action_share">Share recipe</string>
 </resources>

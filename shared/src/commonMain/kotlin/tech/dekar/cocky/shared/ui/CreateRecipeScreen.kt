@@ -7,8 +7,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -46,6 +50,21 @@ fun CreateRecipeScreen(
                     stringResource(Res.string.recipe_action_create)
                 else stringResource(Res.string.recipe_action_edit)) }
             )
+        },
+        bottomBar = {
+            BottomAppBar {
+                Icons.Filled.Add
+//                Icon(Icons.Filled.Add, contentDescription = "Add")
+//                Icon(Icons.Filled, contentDescription = "Add")
+                Text(
+                    text = if (initialRecipe == null)
+                        stringResource(Res.string.recipe_action_create)
+                    else stringResource(Res.string.recipe_action_edit),
+                    modifier = Modifier.fillMaxWidth(),
+                    style = MaterialTheme.typography.titleLarge
+                )
+            }
+
         },
         content = {
             Column(

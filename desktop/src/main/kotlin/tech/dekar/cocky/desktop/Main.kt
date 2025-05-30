@@ -5,21 +5,14 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import tech.dekar.cocky.shared.ui.CreateRecipeScreen
+import tech.dekar.cocky.shared.ui.control.Navigation
+import tech.dekar.cocky.shared.ui.control.NavigationBus
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        CreateRecipeScreen(
-            onSave = {},
-            onCancel = {}
-        )
-
-//        var counter by remember { mutableStateOf(0) }
-//        Button(onClick = { counter++ }) {
-//            Text("Clicked $counter times")
-//        }
+        Navigation(NavigationBus())
     }
 }
 

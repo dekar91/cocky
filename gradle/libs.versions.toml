@@ -94,6 +94,7 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 # Material3 & Icons
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-material3-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+kotlin-compose-material-icons-core = { group = "org.jetbrains.compose.material", name = "material-icons-core", version = "1.7.3" }
 
 # DataStore
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferencesVersion" }
@@ -117,10 +118,12 @@ junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engi
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
-kotlinx-jetbrains-test = { group = "org.jetbrains.kotlin", name = "kotlin-test" }
+kotlinx-jetbrains-test = { group = "org.jetbrains.kotlin", name = "kotlin-test"}
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+
 mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 mockk-common = { group = "io.mockk", name = "mockk-common", version.ref = "mockk" }
+#mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
 
 skyscreamer-jsonassert = { group = "org.skyscreamer", name = "jsonassert", version.ref = "skyscreamer" }
 

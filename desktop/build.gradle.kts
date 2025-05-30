@@ -1,4 +1,5 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+
 //import app.cash.sqldelight.gradle.VerifyMigrationTask
 
 //import org.jetbrains.compose.desktop.application.dsl.TargetFormat
@@ -21,12 +22,10 @@ version = "1.0-SNAPSHOT"
 
 dependencies {
     implementation(project(":shared"))
-    // Note, if you develop a library, you should use compose.desktop.common.
-    // compose.desktop.currentOs should be used in launcher-sourceSet
-    // (in a separate module for demo project and in testMain).
-    // With compose.desktop.common you will also lose @Preview functionality
+
     implementation(compose.desktop.currentOs)
-//    implementation("org.jetbrains.compose.runtime:runtime")
+    implementation(compose.material)
+    implementation(compose.runtime)
 }
 
 compose.desktop {
@@ -58,4 +57,3 @@ compose.desktop {
 
 
 }
-

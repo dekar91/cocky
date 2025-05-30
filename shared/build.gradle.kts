@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.sqldelight)
     alias(libs.plugins.kotlin.main.compose)
-
+    alias(libs.plugins.kotlin.kotest)
 }
 
 
@@ -55,16 +55,20 @@ kotlin {
 
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation(compose.material)
+                implementation(compose.runtime)
+
                 implementation(compose.ui)
                 implementation(compose.components.resources)
-
                 implementation(libs.kotlin.compose.ui.graphics)
-
                 implementation(libs.sqldelight.runtime)
                 implementation(libs.sqldelight.coroutines)
                 implementation(libs.koin.core)
-
+                implementation(libs.kotlin.compose.material.icons.core)
                 // Add KMP dependencies here
+
+                // Remove androidx navigation for desktop compatibility
+                // implementation("androidx.navigation:navigation-compose:2.9.0")
             }
         }
 
@@ -72,7 +76,7 @@ kotlin {
             dependencies {
                 implementation(libs.kotlinx.jetbrains.test)
                 implementation(libs.kotlinx.coroutines.test)
-                implementation(libs.mockk.common) // limited mockk for common
+//                implementation(libs.mockk.common) // limited mockk for common
                 implementation(libs.kotlin.kotest.engine)
             }
         }
@@ -84,17 +88,7 @@ kotlin {
                 // dependencies declared in commonMain.
                 implementation(libs.kotlin.compose.ui.tooling.preview)
                 implementation(libs.sqldelight.android)
-            }
-        }
-
-        jvmTest {
-            dependencies {
-                implementation(libs.junit.jupiter.api)
-                runtimeOnly(libs.junit.jupiter.engine)
-                implementation(libs.kotlinx.coroutines.test)
-                implementation(libs.kotlinx.jetbrains.test)
-                implementation(libs.mockk)
-
+//                implementation("androidx.navigation:navigation-compose:2.7.7")
             }
         }
 
@@ -132,12 +126,21 @@ kotlin {
         }
         val desktopMain by getting
 
-        desktopMain.dependencies {
+            desktopMain.dependencies {
+                implementation(compose.desktop.common)
+                implementation(libs.sqldelight.sqlite) // SQLite (для дескт)
+            }
 
-            implementation(libs.sqldelight.sqlite) // SQLite (для дескт)
+        val desktopTest by getting
 
-
+        desktopTest.dependencies {
+            implementation(libs.junit.jupiter.api)
+            runtimeOnly(libs.junit.jupiter.engine)
+            implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.kotlinx.jetbrains.test)
+            implementation(libs.mockk)
         }
+
     }
 }
 
