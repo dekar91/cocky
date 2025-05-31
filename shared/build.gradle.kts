@@ -8,7 +8,6 @@ plugins {
 }
 
 kotlin {
-
     // Target declarations - add or remove as needed below. These define
     // which platforms this KMP module supports.
     // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
@@ -180,9 +179,8 @@ sqldelight {
         create("CockyDatabase") {
             packageName.set("tech.dekar.cocky.shared.db")
             verifyMigrations.set(true)
-            deriveSchemaFromMigrations.set(true)
+            deriveSchemaFromMigrations.set(true) // Sometimes it breaks desktop build
             migrationOutputDirectory.set(file("${getLayout().buildDirectory}/tmp/migrations"))
-
         }
     }
 }

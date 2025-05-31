@@ -1,8 +1,9 @@
 package tech.dekar.cocky.shared.domain.repository
 
 import tech.dekar.cocky.shared.db.CockyDatabase
+import tech.dekar.cocky.shared.db.Recipes
 import tech.dekar.cocky.shared.domain.model.Recipe
-import tech.dekar.shared.db.Recipes
+
 
 class RecipeLocalDataSource(db: CockyDatabase) : Repository<Recipes, Recipe>() {
     private val queries = db.recipesQueries

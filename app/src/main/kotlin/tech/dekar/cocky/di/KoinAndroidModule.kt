@@ -19,12 +19,15 @@ object KoinAndroidModule {
         includes(androidMainModule)
 
         single<SqlDriver> {
-            AndroidSqliteDriver(CockyDatabase.Schema, get(), "test1.db").also { driver ->
-                CockyDatabase.Schema.create(driver)
-            }
+            AndroidSqliteDriver(CockyDatabase.Schema, get(), "cocky.db")
         }
 
-        single { CockyDatabase(get(), get()) }
+        single {
+            val driver = get<SqlDriver>()
+            CockyDatabase.Schema.create(driver)
+
+            CockyDatabase(get(), get())
+        }
 
         viewModel { RecipeViewModel(get(named(MAIN)), get(named(IO))) }
 
