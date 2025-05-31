@@ -179,7 +179,7 @@ sqldelight {
         create("CockyDatabase") {
             packageName.set("tech.dekar.cocky.shared.db")
             verifyMigrations.set(true)
-            deriveSchemaFromMigrations.set(true) // Sometimes it breaks desktop build
+//            deriveSchemaFromMigrations.set(false) // Sometimes it breaks desktop build
             migrationOutputDirectory.set(file("${getLayout().buildDirectory}/tmp/migrations"))
         }
     }
