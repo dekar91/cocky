@@ -38,7 +38,7 @@ class DatabaseSchemaTest {
             0
         )
 
-        cursor.value shouldBe  "recipes"
+        cursor.value shouldBe "recipes"
 
     }
 
@@ -52,7 +52,7 @@ class DatabaseSchemaTest {
             0
         )
 
-        cursor.value shouldBe  "ingredients"
+        cursor.value shouldBe "ingredients"
     }
 
     @Test
@@ -65,6 +65,6 @@ class DatabaseSchemaTest {
             0
         )
 
-        cursor.value shouldBe  "recipe_steps"
+        cursor.value shouldBe "recipe_steps"
     }
 }
